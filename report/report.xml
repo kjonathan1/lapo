@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <record id="paysage" model="report.paperformat">
+            <field name="name">A4 Paysage</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">3</field>
+            <field name="dpi">80</field>
+        </record>
+
+        <record id="sheet_a5" model="report.paperformat">
+            <field name="name">A5 Format</field>
+            <field name="default" eval="True"/>        
+            <field name="format">custom</field>
+            <field name="page_height">210</field>
+            <field name="page_width">148</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">3</field> 
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">3</field>
+            <field name="dpi">130</field>
+        </record>
+
+        <report 
+            id="test_id"
+            model="labo.test"
+            string="Résultat"
+            report_type="qweb-pdf"
+            name="labo.resultat"
+            file="labo.resultat"
+        />
+		<!-- <report 
+            id="test_id2"
+            model="labo.test"
+            string="Reçu"
+            report_type="qweb-pdf"
+            name="labo.reçu"
+            file="labo.reçu"
+			paperformat="sheet_a5"
+        /> -->
+
+        <!-- <report 
+            id="bilan_id"
+            model="labo.bilan"
+            string="Bilan"
+            report_type="qweb-pdf"
+            name="labo.bilantemplate"
+            file="labo.bilantemplate"
+        /> -->
+		<!-- <record id="bilan_report_action" model="ir.actions.report">
+            <field name="name">Bilan Report</field>
+            <field name="model">labo.bilan</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">labo.bilantemplate</field>
+            <field name="report_file">labo.bilantemplate</field>
+        </record> -->
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- request -->
+    <record id="test_view_form" model="ir.ui.view">
+        <field name="name">lapo.request.form</field>
+        <field name="model">lapo.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="send" string="Send For Evaluation" type="object" class="btn-primary" />
+                    <button name="to_draft" string="Back to draft" type="object" class="btn-primary"/>
+                    <button name="cancel" string="Cancel" type="object" class="btn-primary" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,validated,canceled"/>
+                </header>
+                <sheet>
+                    <group>
+                    
+                        <field name="name"/>
+                        <field name="title" readonly="state not in ('draft')" />
+                        <field name="item" readonly="state not in ('draft')" />
+                        <field name="description" readonly="state not in ('draft')" />
+                        <field name="amount" readonly="state not in ('draft')" />
+                            
+                    
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="test_tree_view" model="ir.ui.view">
+            <field name="name">lapo.request.tree</field>
+            <field name="model">lapo.request</field>
+            <field name="arch" type="xml">
+                <tree string="Request">
+                    <field name="date"/>
+                    <field name="name"/>
+                    <field name="title"/>
+                    <field name="item"/>
+                    <field name="amount"/>
+                    <field name="state"/> 
+                    
+                </tree>
+            </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_lapo_request">
+        <field name="name">Request</field>
+        <field name="res_model">lapo.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="test_tree_view"/>
+        <field name="help" type="html">
+            <p>Add a new request</p>
+        </field>
+    </record>
+
+
+</odoo>
