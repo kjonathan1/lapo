@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="minimal_layout_inherit" inherit_id="web.minimal_layout">
+		<xpath expr="//head" position="inside">
+			<link rel='stylesheet' href="/labo/static/src/css/ostock.css"/>
+			<link rel='stylesheet' href="/labo/static/src/css/ostock1.css"/>
+		</xpath>
+    </template>
+
+    <template id='bilantemplate'>
+        <t t-call="web.html_container">
+        <t t-set="data_report_margin_top" t-value="30"/>
+        <t t-set="data_report_header_spacing" t-value="9"/>
+        <t t-set="data_report_dpi" t-value="110"/>
+            <t t-call="web.internal_layout">
+                <div class="page">
+                       
+                       
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                           <h3>BILAN AU <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/> <strong></strong></h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <h6 class="mb-3">DU:</h6>
+                                    <div>
+                                        <strong><span t-esc="data['debut']"/></strong>
+                                    </div> 
+                                   
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="mb-3">AU:</h6>
+                                     <div>
+                                        <strong><span t-esc="data['fin']"/></strong>
+                                    </div> 
+                                   
+                                </div>
+                            </div>
+                            <br/>
+                            
+                            <div class="table-responsive-sm">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr><th colspan="8">Tests Patients</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <t- t-set="montant" t-value="0"/> 
+                                        <t- t-set="nb" t-value="0"/> 
+                                        <t- t-set="variation" t-value="0"/>
+                                        <tr>
+                                            <td>Date</td>
+                                            <td>Ref</td>
+                                            <td>Patient</td>
+                                            <td align="right">Montant</td>
+                                        </tr>
+                                        <t t-foreach="tests" t-as="res"> 
+                                            <tr>
+                                                <td><span t-esc="res['date']"/></td> 
+                                                <td><span t-esc="res['name']"/></td> 
+                                                <td><span t-esc="res['patient']"/></td> 
+                                                <td align="right"><span t-esc="'{:,.0f}'.format(res['montant']).replace(',', ' ').replace('.', ',')"/></td>
+                                            </tr>
+                                            <t- t-set="montant" t-value="montant + res['montant']"/> 
+                                            <t- t-set="nb" t-value="nb+1"/>        
+                                        </t> 
+                                        <tr>
+                                            <td colspan="3">
+                                                NOMBRE DE PATIENT: <br/>
+                                                MONTANT TOTAL:  <br/>
+                                            </td>
+                                             <td>
+                                                <span t-esc="'{:,.0f}'.format(nb).replace(',', ' ').replace('.', ',')"/><br/>
+                                                <span t-esc="'{:,.0f}'.format(montant).replace(',', ' ').replace('.', ',')"/><br/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Examens -->
+                            <div class="table-responsive-sm">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr><th colspan="8">Examens</th></tr>
+                                    </thead>
+                                    <tbody>
+            
+                                        <tr>
+                                            <td>Examens</td>
+                                            <td>Nombre</td>
+                                        </tr>
+                                        <t t-foreach="examens" t-as="res">
+                                            <t t-if="res['nb']>0" > 
+                                                <tr>
+                                                    <td><span t-esc="res['name']"/></td> 
+                                                    <td align="right"><span t-esc="'{:,.0f}'.format(res['nb']).replace(',', ' ').replace('.', ',')"/></td>
+                                                </tr>
+                                            </t>
+                                        </t> 
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </t>
+           
+        </t>
+    </template>
+
+</odoo>
