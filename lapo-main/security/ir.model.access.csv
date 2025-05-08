@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+lapo_request_agent,lapo.request.agent,model_lapo_request,group_agent,1,1,1,1
+lapo_request_linemanager,lapo.request.agent,model_lapo_request,group_linemanager,1,1,0,0
+
+

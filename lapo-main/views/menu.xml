@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menus  -->
+        <menuitem id="lapo" name="PROCUREMENT APP" sequence="150" web_icon="lapo,static/description/icon.png"/>
+            <menuitem id="1" name="Request" parent="lapo"  sequence="5" action="action_lapo_request"/>
+           
+     </data>
+
+</odoo>
